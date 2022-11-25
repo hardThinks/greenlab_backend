@@ -6,7 +6,7 @@ class TestUser:
         request_args = {
             "name": "Test-name",
             "city": "Test-city",
-            "phone_number": "Test-phone-number"
+            "phone_number": "Test-phone-number",
         }
 
         user = User.from_request(request_args)
