@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestNegativeValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = NegativeValidator('balance_change')
 
         assert self.validator.key == 'balance_change'

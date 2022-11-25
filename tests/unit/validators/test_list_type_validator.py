@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestListTypeValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = ListTypeValidator('cashout_attr')
 
         assert self.validator.key == 'cashout_attr'

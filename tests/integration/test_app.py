@@ -2,12 +2,12 @@ from app import app
 
 
 class TestApp:
-    def setup(self):
+    def setup_method(self):
         self.client = app.test_client()
         self.context = app.app_context()
         self.context.push()
 
-    def teardown(self):
+    def teardown_method(self):
         self.context.pop()
 
     def test_apidocs(self):

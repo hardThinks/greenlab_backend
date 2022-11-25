@@ -4,7 +4,7 @@ from models.translators import UserTranslator
 
 
 class TestUserTranslator:
-    def setup(self):
+    def setup_method(self):
         self.translator = UserTranslator()
 
     def test_to_document(self):

@@ -5,7 +5,7 @@ from pymongo import IndexModel
 
 
 class TestIndexFactory:
-    def setup(self):
+    def setup_method(self):
         self.factory = MongoIndexFactory()
         self.column_mock = Mock()
 
@@ -27,7 +27,7 @@ class TestIndexFactory:
 
 
 class TestMongoColumnFactory:
-    def setup(self):
+    def setup_method(self):
         self.factory = MongoColumnFactory()
 
     def test_ascending(self):

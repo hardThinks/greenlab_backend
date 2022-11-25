@@ -1,15 +1,31 @@
+from typing import Protocol
+from pymongo.collection import Collection
 from bson import ObjectId
 
 
+class ModelTranslatorProtocol(Protocol):
+    def to_document(self, model):
+        ...
+
+    def from_document(self, document):
+        ...
+
+
 class BaseRepository:
-    def __init__(self, collection, model_translator, default_scope, indexes):
+    def __init__(
+            self,
+            collection: Collection,
+            model_translator: ModelTranslatorProtocol,
+            default_scope: list,
+            indexes: list,
+    ):
         self.indexes = indexes
         self.default_scope = default_scope
         self.collection = collection
         self.model_translator = model_translator
         self.__configure_indexes()
 
-    def create(self, model) -> str:
+    def create(self, model) -> ObjectId:
         document = self.model_translator.to_document(model)
         document.pop('_id')
         return self.collection.insert_one(document).inserted_id

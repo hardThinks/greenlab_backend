@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestNumericValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = NumericValidator('value')
 
         assert self.validator.key == 'value'

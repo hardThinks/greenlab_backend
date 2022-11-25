@@ -5,7 +5,7 @@ from bson import ObjectId
 
 
 class TestIdListValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = IdListValidator('categories')
 
         assert self.validator.key == 'categories'

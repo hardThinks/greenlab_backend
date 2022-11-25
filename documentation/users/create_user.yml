@@ -1,0 +1,15 @@
+tags:
+  - "users"
+parameters:
+  - in: "body"
+    name: "body"
+    required: true
+    schema:
+      $ref: "#/definitions/UserRequest"
+responses:
+  200:
+    schema:
+      $ref: "#/definitions/User"
+  400:
+    schema:
+      $ref: "#definitions/Error"

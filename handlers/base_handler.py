@@ -44,7 +44,7 @@ class BaseHandler:
         )
 
     @abstractmethod
-    def handle(self, request) -> Response:
+    def handle(self, request: Request) -> Response:
         ...
 
     def extract_dict_only_json(self, request: Request) -> dict:

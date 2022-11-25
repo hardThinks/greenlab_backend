@@ -7,7 +7,7 @@ from infrastructure.exceptions import InvalidRequestException
 
 
 class TestPageService:
-    def setup(self):
+    def setup_method(self):
         self.service = PageService()
         self.repository_mock = Mock()
 

@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestPresenceNumericValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = PresenceNumericValidator('numeric_value')
 
         assert self.validator.key == 'numeric_value'
