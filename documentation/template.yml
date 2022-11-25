@@ -1,0 +1,12 @@
+swagger: "2.0"
+info:
+  title: "Boilerplate API"
+  version: "1"
+schemes:
+  - "http"
+definitions:
+  HealthCheckResponse:
+    type: "object"
+    properties:
+      message:
+        type: "string"

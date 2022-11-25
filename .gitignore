@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore venv
+/venv/
+
+# Ignore IDE files
+/.vscode/
+/.idea/
+
+
+# linter
+.flake8
