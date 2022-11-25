@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestStringDateValidator:
-    def setup(self):
+    def setup_method(self):
 
         self.validator = StringDateValidator('purchase_date')
 

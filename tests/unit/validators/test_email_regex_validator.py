@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestEmailRegexValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = EmailRegexValidator('email')
 
         assert self.validator.key == 'email'

@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestPasswordMatchValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = PasswordsMatchValidator('new_password', 'password_confirmation')
         assert self.validator.key == 'new_password'
         assert self.validator.matching_key == 'password_confirmation'

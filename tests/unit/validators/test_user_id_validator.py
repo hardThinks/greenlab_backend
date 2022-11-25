@@ -5,7 +5,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestUserIdValidator:
-    def setup(self):
+    def setup_method(self):
         self.users_repository_mock = Mock()
 
         self.validator = UserIdValidator(

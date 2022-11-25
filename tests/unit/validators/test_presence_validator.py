@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestPresenceValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = PresenceValidator('user_id')
 
         assert self.validator.key == 'user_id'

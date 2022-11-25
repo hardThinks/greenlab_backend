@@ -3,7 +3,7 @@ from validators.base_validator import BaseValidator
 
 
 class TestLengthValidator:
-    def setup(self):
+    def setup_method(self):
         self.validator = LengthValidator('password', 8, 32)
 
         assert self.validator.key == 'password'
