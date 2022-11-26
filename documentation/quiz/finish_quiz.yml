@@ -3,4 +3,4 @@ tags:
 responses:
   200:
     schema:
-      $ref: "#/definitions/QuestionsList"
+      $ref: "#/definitions/QuizResultItems"

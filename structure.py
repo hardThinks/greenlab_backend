@@ -9,7 +9,10 @@ from handlers.users import (
 from handlers.categories import (
     GetAllCategoriesHandler,
 )
-from handlers.quiz import GetAllQuestionsHandler
+from handlers.quiz import (
+    GetAllQuestionsHandler,
+    FinishQuizHandler,
+)
 from services import (
     PageService,
     UsersService,
@@ -38,6 +41,7 @@ from presenters import (
     ListPresenter,
     CategoryPresenter,
     QuestionPresenter,
+    QuizResultItemPresenter,
 )
 
 index_factory = MongoIndexFactory()
@@ -50,6 +54,13 @@ class Structure:
         self.structure = {
             'page_service': {
                 'class': PageService,
+            },
+            'finish_quiz_handler': {
+                'class': FinishQuizHandler,
+                'args': [
+                    'quiz_service',
+                    'quiz_result_items_presenter',
+                ],
             },
             'categories_repository': {
                 'class': CategoriesRepository,
@@ -75,7 +86,36 @@ class Structure:
             },
             'quiz_service': {
                 'class': QuizService,
-                'args': ['questions_repository'],
+                'args': [
+                    'categories_repository',
+                    'questions_repository',
+                    'get_quiz_result_validator_service',
+                ],
+            },
+            'quiz_result_items_presenter': {
+                'class': ListPresenter,
+                'args': ['quiz_result_item_presenter'],
+            },
+            'quiz_result_item_presenter': {
+                'class': QuizResultItemPresenter,
+                'args': ['category_presenter'],
+            },
+            'get_quiz_result_validator_service': {
+                'class': ValidatorService,
+                'args': [
+                    [
+                        'quiz_result_presence_validator',
+                        'user_id_presence_validator',
+                    ],
+                ],
+            },
+            'user_id_presence_validator': {
+                'class': PresenceValidator,
+                'args': [lambda: 'user_id'],
+            },
+            'quiz_result_presence_validator': {
+                'class': PresenceValidator,
+                'args': [lambda: 'result'],
             },
             'get_all_questions_handler': {
                 'class': GetAllQuestionsHandler,
