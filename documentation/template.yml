@@ -56,5 +56,13 @@ definitions:
     type: "array"
     items:
       $ref: "#definitions/Question"
+  QuizResult:
+    type: "object"
+    properties:
+      category:
+        type:
+          $ref: "#definitions/Category"
+      percentage:
+        type: "number"
   Error:
     type: "object"
