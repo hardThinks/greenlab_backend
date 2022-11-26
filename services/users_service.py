@@ -1,6 +1,6 @@
 from infrastructure.exceptions import InvalidRequestException
 from repositories import UsersRepository
-from models import User
+from models import User, QuizResult
 from .validator_service import ValidatorService
 
 
@@ -24,3 +24,10 @@ class UsersService:
 
     def get_all(self, principal) -> list[User]:
         return self.users_repository.get_list()
+
+    def add_quiz_result(self, user_id: str, quiz_result: QuizResult) -> None:
+        user = self.users_repository.find_by_id(user_id)
+        if not user:
+            return
+        user.quiz_results.append(quiz_result)
+        self.users_repository.update(user)

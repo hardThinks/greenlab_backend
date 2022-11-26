@@ -2,3 +2,5 @@ from .user_translator import UserTranslator
 from .category_translator import CategoryTranslator
 from .question_translator import QuestionTranslator
 from .weights_translator import WeightsTranslator
+from .quiz_result_translator import QuizResultTranslator
+from .quiz_result_item_translator import QuizResultItemTranslator

@@ -1,5 +1,5 @@
 from app import app
-from tests.users_factory import UsersFactory
+from tests.factories import UsersFactory
 
 
 class TestCategoriesBlueprint:
