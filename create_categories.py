@@ -7,11 +7,11 @@ from time import sleep
 def create_categories():
     repository: CategoriesRepository = structure.instantiate("categories_repository")
     categories = [
-        Category(name="Системный аналитик"),
-        Category(name="Аналитик-программист"),
-        Category(name="Разработчик"),
+        Category(name="Аналитика", description="Системный аналитик"),
+        Category(name="Аналитика-программирование", description="1С, SAP Business Intelligence"),
+        Category(name="Разработка", description="Web, JavaScript, 1С"),
         Category(name="Data engineer"),
-        Category(name="Техническая поддержка"),
+        Category(name="Тех. поддержка"),
     ]
 
     for category in categories:

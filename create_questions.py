@@ -7,11 +7,11 @@ def create_questions():
     categories_repository = structure.instantiate("categories_repository")
     questions_repository = structure.instantiate("questions_repository")
 
-    category_sys_analysis = categories_repository.find_by_name("Системный аналитик")
-    category_analysis_programmer = categories_repository.find_by_name("Аналитик-программист")
-    category_developer = categories_repository.find_by_name("Разработчик")
+    category_sys_analysis = categories_repository.find_by_name("Аналитика")
+    category_analysis_programmer = categories_repository.find_by_name("Аналитика-программирование")
+    category_developer = categories_repository.find_by_name("Разработка")
     category_data_engineer = categories_repository.find_by_name("Data engineer")
-    category_support = categories_repository.find_by_name("Техническая поддержка")
+    category_support = categories_repository.find_by_name("Тех. поддержка")
 
     questions = [
         Question(

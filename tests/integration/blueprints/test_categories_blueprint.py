@@ -16,9 +16,9 @@ class TestCategoriesBlueprint:
         categories = [item["name"] for item in response.json]
         assert len(categories) == 5
         assert set(categories) == {
-            "Системный аналитик",
-            "Аналитик-программист",
-            "Разработчик",
+            "Аналитика",
+            "Аналитика-программирование",
+            "Разработка",
             "Data engineer",
-            "Техническая поддержка",
+            "Тех. поддержка",
         }

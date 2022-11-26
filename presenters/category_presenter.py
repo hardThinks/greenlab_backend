@@ -6,4 +6,5 @@ class CategoryPresenter:
         return {
             'id': str(category.id),
             'name': category.name,
+            'description': category.description,
         }
