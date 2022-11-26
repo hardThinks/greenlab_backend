@@ -1,1 +1,2 @@
 from .users_blueprint import users_blueprint
+from .categories_blueprint import categories_blueprint

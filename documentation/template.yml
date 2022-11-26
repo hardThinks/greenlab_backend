@@ -34,5 +34,16 @@ definitions:
       type: "array"
       items:
         $ref: "#definitions/User"
+  Category:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+  CategoriesList:
+    type: "array"
+    items:
+      $ref: "#definitions/Category"
   Error:
     type: "object"
