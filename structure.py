@@ -1,7 +1,10 @@
 from types import LambdaType
 
 from dependencies import Dependencies
-from handlers.users import CreateUserHandler
+from handlers.users import (
+    CreateUserHandler,
+    GetAllUsersHandler,
+)
 
 from services import PageService, UsersService, ValidatorService
 from models.factories.mongo_index_factory import (
@@ -11,7 +14,7 @@ from models.factories.mongo_index_factory import (
 from models.translators import UserTranslator
 from repositories import UsersRepository
 from validators import PresenceValidator
-from presenters import UserPresenter
+from presenters import UserPresenter, ListPresenter
 
 index_factory = MongoIndexFactory()
 column_factory = MongoColumnFactory()
@@ -23,6 +26,17 @@ class Structure:
         self.structure = {
             'page_service': {
                 'class': PageService,
+            },
+            'get_all_users_handler': {
+                'class': GetAllUsersHandler,
+                'args': [
+                    'users_service',
+                    'users_list_presenter',
+                ],
+            },
+            'users_list_presenter': {
+                'class': ListPresenter,
+                'args': ['user_presenter'],
             },
             'create_user_handler': {
                 'class': CreateUserHandler,
