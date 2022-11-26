@@ -15,6 +15,7 @@ build: use_secrets
 up: build
 	docker compose up -d
 	docker exec -it backend python create_categories.py
+	docker exec -it backend python create_questions.py
 
 unit_tests: up
 	docker compose exec -T backend pytest -s --cov-report term-missing --cov=. ./tests/unit/
