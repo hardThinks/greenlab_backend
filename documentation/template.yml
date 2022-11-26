@@ -45,5 +45,16 @@ definitions:
     type: "array"
     items:
       $ref: "#definitions/Category"
+  Question:
+    type: "object"
+    properties:
+        id:
+          type: "string"
+        value:
+          type: "string"
+  QuestionsList:
+    type: "array"
+    items:
+      $ref: "#definitions/Question"
   Error:
     type: "object"

@@ -9,11 +9,13 @@ from handlers.users import (
 from handlers.categories import (
     GetAllCategoriesHandler,
 )
+from handlers.quiz import GetAllQuestionsHandler
 from services import (
     PageService,
     UsersService,
     ValidatorService,
     CategoriesService,
+    QuizService,
 )
 from models.factories.mongo_index_factory import (
     MongoIndexFactory,
@@ -22,16 +24,20 @@ from models.factories.mongo_index_factory import (
 from models.translators import (
     UserTranslator,
     CategoryTranslator,
+    QuestionTranslator,
+    WeightsTranslator,
 )
 from repositories import (
     UsersRepository,
     CategoriesRepository,
+    QuestionsRepository,
 )
 from validators import PresenceValidator
 from presenters import (
     UserPresenter,
     ListPresenter,
     CategoryPresenter,
+    QuestionPresenter,
 )
 
 index_factory = MongoIndexFactory()
@@ -55,6 +61,42 @@ class Structure:
                     'category_translator',
                     lambda: [],
                 ],
+            },
+            'questions_repository': {
+                'class': QuestionsRepository,
+                'args': [
+                    lambda: self.dependencies.pymongo_wrapper().get_collection(
+                        client=self.dependencies.mongo(),
+                        collection_name='questions',
+                    ),
+                    'question_translator',
+                    lambda: [],
+                ],
+            },
+            'quiz_service': {
+                'class': QuizService,
+                'args': ['questions_repository'],
+            },
+            'get_all_questions_handler': {
+                'class': GetAllQuestionsHandler,
+                'args': [
+                    'quiz_service',
+                    'questions_presenter',
+                ],
+            },
+            'questions_presenter': {
+                'class': ListPresenter,
+                'args': ['question_presenter'],
+            },
+            'question_presenter': {
+                'class': QuestionPresenter,
+            },
+            'question_translator': {
+                'class': QuestionTranslator,
+                'args': ['weights_translator'],
+            },
+            'weights_translator': {
+                'class': WeightsTranslator,
             },
             'category_translator': {
                 'class': CategoryTranslator,
