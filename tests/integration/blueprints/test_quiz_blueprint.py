@@ -89,7 +89,6 @@ class TestCategoriesBlueprint:
         assert response.json[3]["percentage"] == 4
         assert response.json[4]["percentage"] == 34
 
-
     def test_finish_quiz_v2(self):
         user = self.users_factory.generic()
         user.id = self.users_repository.create(user)
@@ -146,8 +145,6 @@ class TestCategoriesBlueprint:
         assert response.json[3]["percentage"] == 34
         assert response.json[4]["percentage"] == 0
 
-
-
     def test_finish_quiz_v3(self):
         user = self.users_factory.generic()
         user.id = self.users_repository.create(user)
@@ -203,5 +200,3 @@ class TestCategoriesBlueprint:
         assert response.json[2]["percentage"] == 21
         assert response.json[3]["percentage"] == 0
         assert response.json[4]["percentage"] == 19
-
-
