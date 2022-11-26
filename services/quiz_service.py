@@ -1,12 +1,9 @@
 import math
 from random import shuffle
 
-from bson import ObjectId
-
 from models import Category, QuizResultItem, QuizAnswerItem, PossibleAnswers
 from repositories import QuestionsRepository, CategoriesRepository
 from services import ValidatorService
-
 
 
 class QuizService:
