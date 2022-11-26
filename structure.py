@@ -1,20 +1,38 @@
 from types import LambdaType
 
 from dependencies import Dependencies
+
 from handlers.users import (
     CreateUserHandler,
     GetAllUsersHandler,
 )
-
-from services import PageService, UsersService, ValidatorService
+from handlers.categories import (
+    GetAllCategoriesHandler,
+)
+from services import (
+    PageService,
+    UsersService,
+    ValidatorService,
+    CategoriesService,
+)
 from models.factories.mongo_index_factory import (
     MongoIndexFactory,
     MongoColumnFactory,
 )
-from models.translators import UserTranslator
-from repositories import UsersRepository
+from models.translators import (
+    UserTranslator,
+    CategoryTranslator,
+)
+from repositories import (
+    UsersRepository,
+    CategoriesRepository,
+)
 from validators import PresenceValidator
-from presenters import UserPresenter, ListPresenter
+from presenters import (
+    UserPresenter,
+    ListPresenter,
+    CategoryPresenter,
+)
 
 index_factory = MongoIndexFactory()
 column_factory = MongoColumnFactory()
@@ -27,12 +45,44 @@ class Structure:
             'page_service': {
                 'class': PageService,
             },
+            'categories_repository': {
+                'class': CategoriesRepository,
+                'args': [
+                    lambda: self.dependencies.pymongo_wrapper().get_collection(
+                        client=self.dependencies.mongo(),
+                        collection_name='categories',
+                    ),
+                    'category_translator',
+                    lambda: [],
+                ],
+            },
+            'category_translator': {
+                'class': CategoryTranslator,
+            },
             'get_all_users_handler': {
                 'class': GetAllUsersHandler,
                 'args': [
                     'users_service',
                     'users_list_presenter',
                 ],
+            },
+            'get_all_categories_handler': {
+                'class': GetAllCategoriesHandler,
+                'args': [
+                    'categories_service',
+                    'categories_list_presenter',
+                ],
+            },
+            'categories_service': {
+                'class': CategoriesService,
+                'args': ['categories_repository'],
+            },
+            'categories_list_presenter': {
+                'class': ListPresenter,
+                'args': ['category_presenter'],
+            },
+            'category_presenter': {
+                'class': CategoryPresenter,
             },
             'users_list_presenter': {
                 'class': ListPresenter,

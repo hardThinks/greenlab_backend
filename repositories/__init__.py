@@ -1,1 +1,2 @@
 from .users_repository import UsersRepository
+from .categories_repository import CategoriesRepository
