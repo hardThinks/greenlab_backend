@@ -1,11 +1,11 @@
 from app import app
-from tests.users_factory import UsersFactory
+from tests.factories import UsersFactory
 from structure import structure
 from repositories import QuestionsRepository, UsersRepository
 from models import PossibleAnswers
 
 
-class TestCategoriesBlueprint:
+class TestQuizBlueprint:
     def setup_method(self):
         self.users_factory = UsersFactory()
         self.client = app.test_client()
@@ -83,11 +83,11 @@ class TestCategoriesBlueprint:
         response = self.client.post('/v1/quiz/finish', json=body)
 
         assert response.status_code == 200
-        assert response.json[0]["percentage"] == 24
-        assert response.json[1]["percentage"] == 12
-        assert response.json[2]["percentage"] == 49
-        assert response.json[3]["percentage"] == 4
-        assert response.json[4]["percentage"] == 34
+        assert response.json["quiz_result_items"][0]["percentage"] == 24
+        assert response.json["quiz_result_items"][1]["percentage"] == 12
+        assert response.json["quiz_result_items"][2]["percentage"] == 49
+        assert response.json["quiz_result_items"][3]["percentage"] == 4
+        assert response.json["quiz_result_items"][4]["percentage"] == 34
 
     def test_finish_quiz_v2(self):
         user = self.users_factory.generic()
@@ -139,11 +139,11 @@ class TestCategoriesBlueprint:
         response = self.client.post('/v1/quiz/finish', json=body)
 
         assert response.status_code == 200
-        assert response.json[0]["percentage"] == 0
-        assert response.json[1]["percentage"] == 16
-        assert response.json[2]["percentage"] == 14
-        assert response.json[3]["percentage"] == 34
-        assert response.json[4]["percentage"] == 0
+        assert response.json['quiz_result_items'][0]["percentage"] == 0
+        assert response.json['quiz_result_items'][1]["percentage"] == 16
+        assert response.json['quiz_result_items'][2]["percentage"] == 14
+        assert response.json['quiz_result_items'][3]["percentage"] == 34
+        assert response.json['quiz_result_items'][4]["percentage"] == 0
 
     def test_finish_quiz_v3(self):
         user = self.users_factory.generic()
@@ -195,8 +195,8 @@ class TestCategoriesBlueprint:
         response = self.client.post('/v1/quiz/finish', json=body)
 
         assert response.status_code == 200
-        assert response.json[0]["percentage"] == 24
-        assert response.json[1]["percentage"] == 20
-        assert response.json[2]["percentage"] == 21
-        assert response.json[3]["percentage"] == 0
-        assert response.json[4]["percentage"] == 19
+        assert response.json['quiz_result_items'][0]["percentage"] == 24
+        assert response.json['quiz_result_items'][1]["percentage"] == 20
+        assert response.json['quiz_result_items'][2]["percentage"] == 21
+        assert response.json['quiz_result_items'][3]["percentage"] == 0
+        assert response.json['quiz_result_items'][4]["percentage"] == 19

@@ -2,7 +2,7 @@ from app import app
 from structure import structure
 from faker import Faker
 from repositories import UsersRepository
-from tests.users_factory import UsersFactory
+from tests.factories import UsersFactory
 
 
 class TestUsersBlueprint:

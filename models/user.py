@@ -1,3 +1,4 @@
+from .quiz_result import QuizResult
 from bson import ObjectId
 
 
@@ -7,6 +8,7 @@ class User:
         self.name: str | None = None
         self.phone_number: str | None = None
         self.city: str | None = None
+        self.quiz_results: list[QuizResult] = []
 
     @staticmethod
     def from_request(request_args: dict) -> "User":

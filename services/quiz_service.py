@@ -1,9 +1,15 @@
 import math
 from random import shuffle
 
-from models import Category, QuizResultItem, QuizAnswerItem, PossibleAnswers
+from models import (
+    Category,
+    QuizResult,
+    QuizResultItem,
+    QuizAnswerItem,
+    PossibleAnswers,
+)
 from repositories import QuestionsRepository, CategoriesRepository
-from services import ValidatorService
+from services import ValidatorService, UsersService
 
 
 class QuizService:
@@ -12,17 +18,19 @@ class QuizService:
             categories_repository: CategoriesRepository,
             questions_repository: QuestionsRepository,
             get_quiz_result_validator: ValidatorService,
+            users_service: UsersService,
     ):
         self.categories_repository = categories_repository
         self.questions_repository = questions_repository
         self.get_quiz_result_validator = get_quiz_result_validator
+        self.users_service = users_service
 
     def get_all_questions(self, principal) -> list[Category]:
         questions = self.questions_repository.get_list()
         shuffle(questions)
         return questions
 
-    def get_quiz_result(self, attrs: dict, principal) -> list[QuizResultItem]:
+    def get_quiz_result(self, attrs: dict, principal) -> QuizResult:
         self.get_quiz_result_validator.validate(attrs)
 
         quiz_answers = self.__parse_quiz_answers(attrs)
@@ -47,7 +55,9 @@ class QuizService:
                     percentage=math.ceil(current_points / max_point * 100) % 101,
                 ),
             )
-        return quiz_result_items
+        quiz_result = QuizResult(quiz_result_items)
+        self.users_service.add_quiz_result(attrs["user_id"], quiz_result)
+        return quiz_result
 
     def __parse_quiz_answers(self, attrs: dict) -> list[QuizAnswerItem]:
         quiz_answers = []

@@ -29,6 +29,8 @@ from models.translators import (
     CategoryTranslator,
     QuestionTranslator,
     WeightsTranslator,
+    QuizResultTranslator,
+    QuizResultItemTranslator,
 )
 from repositories import (
     UsersRepository,
@@ -42,6 +44,7 @@ from presenters import (
     CategoryPresenter,
     QuestionPresenter,
     QuizResultItemPresenter,
+    QuizResultPresenter,
 )
 
 index_factory = MongoIndexFactory()
@@ -59,8 +62,12 @@ class Structure:
                 'class': FinishQuizHandler,
                 'args': [
                     'quiz_service',
-                    'quiz_result_items_presenter',
+                    'quiz_result_presenter',
                 ],
+            },
+            'quiz_result_presenter': {
+                'class': QuizResultPresenter,
+                'args': ["quiz_result_item_presenter"],
             },
             'categories_repository': {
                 'class': CategoriesRepository,
@@ -90,6 +97,7 @@ class Structure:
                     'categories_repository',
                     'questions_repository',
                     'get_quiz_result_validator_service',
+                    'users_service',
                 ],
             },
             'quiz_result_items_presenter': {
@@ -179,6 +187,9 @@ class Structure:
             },
             'user_presenter': {
                 'class': UserPresenter,
+                'args': [
+                    'quiz_result_presenter',
+                ],
             },
             'users_service': {
                 'class': UsersService,
@@ -200,6 +211,21 @@ class Structure:
             },
             'user_translator': {
                 'class': UserTranslator,
+                'args': [
+                    'quiz_result_translator',
+                ],
+            },
+            'quiz_result_translator': {
+                'class': QuizResultTranslator,
+                'args': [
+                    'quiz_result_item_translator',
+                ],
+            },
+            'quiz_result_item_translator': {
+                'class': QuizResultItemTranslator,
+                'args': [
+                    'category_translator',
+                ],
             },
             'create_user_validator_service': {
                 'class': ValidatorService,

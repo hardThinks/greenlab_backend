@@ -30,6 +30,11 @@ definitions:
         type: "string"
       city:
         type: "string"
+      quiz_results:
+        type: "array"
+        items:
+          $ref: "#definitions/QuizResult"
+
   UsersList:
       type: "array"
       items:
@@ -59,9 +64,15 @@ definitions:
   QuizResult:
     type: "object"
     properties:
+      quiz_result_items:
+        type: "array"
+        items:
+          $ref: "#definitions/QuizResultItem"
+  QuizResultItem:
+    type: "object"
+    properties:
       category:
-        type:
-          $ref: "#definitions/Category"
+        $ref: "#definitions/Category"
       percentage:
         type: "number"
   Error:
