@@ -22,3 +22,6 @@ class UsersService:
             raise InvalidRequestException(errors={"user": ["already_exists"]})
         user.id = self.users_repository.create(user)
         return user
+
+    def get_all(self, principal) -> list[User]:
+        return self.users_repository.get_list()

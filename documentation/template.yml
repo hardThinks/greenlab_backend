@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  title: "Boilerplate API"
+  title: "Greenlab API"
   version: "1"
 schemes:
   - "http"
@@ -30,5 +30,9 @@ definitions:
         type: "string"
       city:
         type: "string"
+  UsersList:
+      type: "array"
+      items:
+        $ref: "#definitions/User"
   Error:
     type: "object"
