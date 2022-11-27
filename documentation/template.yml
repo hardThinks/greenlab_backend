@@ -94,6 +94,24 @@ definitions:
     properties:
       total_users:
         type: "integer"
+  CreateQuizRequest:
+    type: "object"
+    properties:
+      category_id:
+        type: "string"
+      name:
+        type: "string"
+  Quiz:
+    type: "object"
+    properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+        questions:
+          type: "array"
+          items:
+            $ref: "#definitions/Question"
 
   Error:
     type: "object"

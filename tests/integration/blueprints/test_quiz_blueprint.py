@@ -1,7 +1,12 @@
 from app import app
 from tests.factories import UsersFactory
 from structure import structure
-from repositories import QuestionsRepository, UsersRepository
+from repositories import (
+    QuestionsRepository,
+    UsersRepository,
+    CategoriesRepository,
+    QuizRepository,
+)
 from models import PossibleAnswers
 
 
@@ -15,9 +20,24 @@ class TestQuizBlueprint:
             'questions_repository')
         self.users_repository: UsersRepository = structure.instantiate(
             "users_repository")
+        self.categories_repository: CategoriesRepository = structure.instantiate(
+            "categories_repository")
+        self.quiz_repository: QuizRepository = structure.instantiate("quiz_repository")
 
     def teardown_method(self):
         self.users_repository.delete_all()
+        self.quiz_repository.delete_all()
+
+    def test_create(self):
+        body = {
+            "name": "test-quiz",
+        }
+
+        response = self.client.post('/v1/quiz', json=body)
+        assert response.status_code == 200
+        assert response.json["id"]
+        assert response.json["name"]
+        assert response.json["questions"] is not None
 
     def test_get_all_predefined_questions(self):
         response = self.client.get('/v1/quiz/questions')

@@ -1,0 +1,13 @@
+tags:
+  - "quiz"
+parameters:
+  - in: "body"
+    name: "body"
+    required: true
+    schema:
+      $ref: "#/definitions/CreateQuizRequest"
+
+responses:
+  200:
+    schema:
+      $ref: "#/definitions/Quiz"

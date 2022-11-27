@@ -1,14 +1,20 @@
 import math
 from random import shuffle
 
+
 from models import (
     Category,
     QuizResult,
     QuizResultItem,
     QuizAnswerItem,
     PossibleAnswers,
+    Quiz,
 )
-from repositories import QuestionsRepository, CategoriesRepository
+from repositories import (
+    QuestionsRepository,
+    CategoriesRepository,
+    QuizRepository,
+)
 from services import ValidatorService, UsersService
 
 
@@ -17,13 +23,23 @@ class QuizService:
             self,
             categories_repository: CategoriesRepository,
             questions_repository: QuestionsRepository,
+            quiz_repository: QuizRepository,
             get_quiz_result_validator: ValidatorService,
+            create_quiz_validator: ValidatorService,
             users_service: UsersService,
     ):
         self.categories_repository = categories_repository
         self.questions_repository = questions_repository
+        self.quiz_repository = quiz_repository
         self.get_quiz_result_validator = get_quiz_result_validator
+        self.create_quiz_validator = create_quiz_validator
         self.users_service = users_service
+
+    def create_quiz(self, attrs: dict, principal) -> Quiz:
+        self.create_quiz_validator.validate(attrs)
+        quiz = Quiz.from_request(attrs)
+        quiz.id = self.quiz_repository.create(quiz)
+        return quiz
 
     def get_all_questions(self, principal) -> list[Category]:
         questions = self.questions_repository.get_list()

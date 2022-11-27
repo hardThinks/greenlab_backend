@@ -1,3 +1,4 @@
 from .users_repository import UsersRepository
 from .categories_repository import CategoriesRepository
 from .questions_repository import QuestionsRepository
+from .quiz_repository import QuizRepository
