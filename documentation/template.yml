@@ -75,5 +75,20 @@ definitions:
         $ref: "#definitions/Category"
       percentage:
         type: "number"
+  FinishQuizRequest:
+    type: "object"
+    properties:
+      user_id:
+        type: "string"
+      result:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            question_id:
+              type: "string"
+            answer:
+              type: "string"
+
   Error:
     type: "object"

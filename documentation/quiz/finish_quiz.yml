@@ -1,6 +1,13 @@
 tags:
   - "quiz"
+parameters:
+  - in: "body"
+    name: "body"
+    required: true
+    schema:
+      $ref: "#/definitions/FinishQuizRequest"
+
 responses:
   200:
     schema:
-      $ref: "#/definitions/QuizResultItems"
+      $ref: "#/definitions/QuizResult"

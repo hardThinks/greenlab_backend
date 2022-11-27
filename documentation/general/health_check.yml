@@ -1,5 +1,6 @@
 tags:
   - 'server'
+
 responses:
   200:
     schema:
