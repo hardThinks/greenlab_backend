@@ -48,7 +48,7 @@ class TestQuizBlueprint:
         assert len(questions) == 7
         assert set(questions) == {
             "Вы легко находите общий язык с людьми?",
-            "Вы выходите из себя или нервничаете если у вас не получается что-то 'объяснить собеседнику",
+            "Вы выходите из себя или нервничаете если у вас не получается что-то объяснить собеседнику",
             "Вам интересна математика и/или математическое моделирование?",
             "Вам интересно анализировать информацию и приходить к необычным выводам?",
             "Вы любите создавать/конструировать что-то новое?",
@@ -61,7 +61,7 @@ class TestQuizBlueprint:
         user.id = self.users_repository.create(user)
         predefined_questions = [
             self.questions_repository.find_by_value("Вы легко находите общий язык с людьми?"),
-            self.questions_repository.find_by_value("Вы выходите из себя или нервничаете если у вас не получается что-то 'объяснить собеседнику"),
+            self.questions_repository.find_by_value("Вы выходите из себя или нервничаете если у вас не получается что-то объяснить собеседнику"),
             self.questions_repository.find_by_value("Вам интересна математика и/или математическое моделирование?"),
             self.questions_repository.find_by_value("Вам интересно анализировать информацию и приходить к необычным выводам?"),
             self.questions_repository.find_by_value("Вы любите создавать/конструировать что-то новое?"),
@@ -117,7 +117,7 @@ class TestQuizBlueprint:
         user.id = self.users_repository.create(user)
         predefined_questions = [
             self.questions_repository.find_by_value("Вы легко находите общий язык с людьми?"),
-            self.questions_repository.find_by_value("Вы выходите из себя или нервничаете если у вас не получается что-то 'объяснить собеседнику"),
+            self.questions_repository.find_by_value("Вы выходите из себя или нервничаете если у вас не получается что-то объяснить собеседнику"),
             self.questions_repository.find_by_value("Вам интересна математика и/или математическое моделирование?"),
             self.questions_repository.find_by_value("Вам интересно анализировать информацию и приходить к необычным выводам?"),
             self.questions_repository.find_by_value("Вы любите создавать/конструировать что-то новое?"),
@@ -173,7 +173,7 @@ class TestQuizBlueprint:
         user.id = self.users_repository.create(user)
         predefined_questions = [
             self.questions_repository.find_by_value("Вы легко находите общий язык с людьми?"),
-            self.questions_repository.find_by_value("Вы выходите из себя или нервничаете если у вас не получается что-то 'объяснить собеседнику"),
+            self.questions_repository.find_by_value("Вы выходите из себя или нервничаете если у вас не получается что-то объяснить собеседнику"),
             self.questions_repository.find_by_value("Вам интересна математика и/или математическое моделирование?"),
             self.questions_repository.find_by_value("Вам интересно анализировать информацию и приходить к необычным выводам?"),
             self.questions_repository.find_by_value("Вы любите создавать/конструировать что-то новое?"),
