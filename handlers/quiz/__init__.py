@@ -1,2 +1,3 @@
 from .get_all_questions_handler import GetAllQuestionsHandler
 from .finish_quiz_handler import FinishQuizHandler
+from .create_quiz_handler import CreateQuizHandler

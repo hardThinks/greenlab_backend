@@ -12,6 +12,7 @@ from handlers.categories import (
 from handlers.quiz import (
     GetAllQuestionsHandler,
     FinishQuizHandler,
+    CreateQuizHandler,
 )
 from handlers.stats import GetStatsHandler
 from services import (
@@ -32,12 +33,12 @@ from models.translators import (
     QuestionTranslator,
     WeightsTranslator,
     QuizResultTranslator,
-    QuizResultItemTranslator,
+    QuizResultItemTranslator, QuizTranslator,
 )
 from repositories import (
     UsersRepository,
     CategoriesRepository,
-    QuestionsRepository,
+    QuestionsRepository, QuizRepository,
 )
 from validators import PresenceValidator
 from presenters import (
@@ -48,6 +49,7 @@ from presenters import (
     QuizResultItemPresenter,
     QuizResultPresenter,
     StatsPresenter,
+    QuizPresenter,
 )
 
 index_factory = MongoIndexFactory()
@@ -60,6 +62,17 @@ class Structure:
         self.structure = {
             'page_service': {
                 'class': PageService,
+            },
+            'create_quiz_handler': {
+                'class': CreateQuizHandler,
+                'args': [
+                    'quiz_service',
+                    'quiz_presenter',
+                ],
+            },
+            'quiz_presenter': {
+                'class': QuizPresenter,
+                'args': ['question_presenter'],
             },
             'get_stats_handler': {
                 'class': GetStatsHandler,
@@ -113,9 +126,39 @@ class Structure:
                 'args': [
                     'categories_repository',
                     'questions_repository',
+                    'quiz_repository',
                     'get_quiz_result_validator_service',
+                    'create_quiz_validator_service',
                     'users_service',
                 ],
+            },
+            'quiz_repository': {
+                'class': QuizRepository,
+                'args': [
+                    lambda: self.dependencies.pymongo_wrapper().get_collection(
+                        client=self.dependencies.mongo(),
+                        collection_name='quizzes',
+                    ),
+                    'quiz_translator',
+                    lambda: [],
+                ],
+            },
+            'quiz_translator': {
+                'class': QuizTranslator,
+                'args': ['question_translator'],
+            },
+            'create_quiz_validator_service': {
+                'class': ValidatorService,
+                'args': [
+                    [
+                        'name_presence_validator',
+                    ],
+                ],
+            },
+
+            'name_presence_validator': {
+                'class': PresenceValidator,
+                'args': [lambda: "name"],
             },
             'quiz_result_items_presenter': {
                 'class': ListPresenter,

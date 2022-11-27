@@ -17,6 +17,13 @@ def get_all():
     return handler.handle(request)
 
 
+@quiz_blueprint.route("/quiz", methods=["POST"])
+@swag_from(f'{base_swagger_path}/create_quiz.yml')
+def create_quiz():
+    handler: GetAllQuestionsHandler = structure.instantiate("create_quiz_handler")
+    return handler.handle(request)
+
+
 @quiz_blueprint.route("/quiz/finish", methods=["POST"])
 @swag_from(f'{base_swagger_path}/finish_quiz.yml')
 def finish_quiz():
