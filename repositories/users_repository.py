@@ -24,3 +24,6 @@ class UsersRepository(BaseRepository):
         if not document:
             return None
         return self.model_translator.from_document(document)
+
+    def get_total_users_number(self):
+        return self.collection.count_documents({})

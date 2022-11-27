@@ -31,3 +31,6 @@ class UsersService:
             return
         user.quiz_results.append(quiz_result)
         self.users_repository.update(user)
+
+    def get_total_number(self, principal) -> int:
+        return self.users_repository.get_total_users_number()

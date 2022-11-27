@@ -89,6 +89,11 @@ definitions:
               type: "string"
             answer:
               type: "string"
+  Stats:
+    type: "object"
+    properties:
+      total_users:
+        type: "integer"
 
   Error:
     type: "object"

@@ -1,0 +1,6 @@
+tags:
+  - "stats"
+responses:
+  200:
+    schema:
+      $ref: "#/definitions/Stats"

@@ -13,12 +13,14 @@ from handlers.quiz import (
     GetAllQuestionsHandler,
     FinishQuizHandler,
 )
+from handlers.stats import GetStatsHandler
 from services import (
     PageService,
     UsersService,
     ValidatorService,
     CategoriesService,
     QuizService,
+    StatsService,
 )
 from models.factories.mongo_index_factory import (
     MongoIndexFactory,
@@ -45,6 +47,7 @@ from presenters import (
     QuestionPresenter,
     QuizResultItemPresenter,
     QuizResultPresenter,
+    StatsPresenter,
 )
 
 index_factory = MongoIndexFactory()
@@ -57,6 +60,20 @@ class Structure:
         self.structure = {
             'page_service': {
                 'class': PageService,
+            },
+            'get_stats_handler': {
+                'class': GetStatsHandler,
+                'args': [
+                    'stats_service',
+                    'stats_presenter',
+                ],
+            },
+            'stats_presenter': {
+                'class': StatsPresenter,
+            },
+            'stats_service': {
+                'class': StatsService,
+                'args': ['users_service'],
             },
             'finish_quiz_handler': {
                 'class': FinishQuizHandler,
