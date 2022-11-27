@@ -16,4 +16,5 @@ class User:
         user.name = request_args.get("name")
         user.phone_number = request_args.get("phone_number")
         user.city = request_args.get("city")
+        user.quiz_results = []
         return user

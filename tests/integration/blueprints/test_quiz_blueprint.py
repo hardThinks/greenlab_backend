@@ -16,6 +16,9 @@ class TestQuizBlueprint:
         self.users_repository: UsersRepository = structure.instantiate(
             "users_repository")
 
+    def teardown_method(self):
+        self.users_repository.delete_all()
+
     def test_get_all_predefined_questions(self):
         response = self.client.get('/v1/quiz/questions')
 

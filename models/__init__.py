@@ -5,3 +5,4 @@ from .category import Category
 from .question import Question, Weight
 from .quiz_result import QuizResultItem, QuizResult
 from .quiz_answer_item import QuizAnswerItem, PossibleAnswers
+from .stats import Stats
